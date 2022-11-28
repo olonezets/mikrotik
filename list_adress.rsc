@@ -1,5 +1,5 @@
 #===============================================================================
-#_bogon_list_for_internett
+#_bogon_list_for_internet
 
 add address=0.0.0.0/8 comment="self_identification_[rfc_3330]" list=bogon
 add address=10.0.0.0/8 comment="private[rfc_1918]_class_a" list=bogon

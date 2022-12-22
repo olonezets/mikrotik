@@ -62,6 +62,7 @@ add address=5.255.192.0/18 comment="yandex" list=russian
 add address=80.239.201.0/24 comment="yandex" list=russian
 add address=77.88.55.0/24 comment="yandex" list=russian
 add address=149.5.244.15 comment="yandex3" list=russian
+add adress=87.250.224.0/19 comment="yandex_market" list=russian
 add address=rambler.ru comment="rambler" list=russian
 add address=81.19.64.0/19 comment="rambler" list=russian
 add address=mail.ru comment="mail_ru" disabled=yes list=russian

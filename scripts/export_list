@@ -10,20 +10,20 @@
 
 :foreach i in=$list do={
 
-    # Удаляем старый файл
+    # delete old file
     /file remove [/file/find name=("$i.txt")]
 
-    # Создаём пустой файл
+    # create emty file
     :local f [/file/add name=("$i.txt") contents=""]
 
-    # Перебираем адреса текущего списка
+    # iterating over the addresses of the current list
     :foreach x in=[/ip/firewall/address-list/find where list=$i] do={
 
         :local ct [/ip/firewall/address-list/get $x creation-time]
         :local createdDate [:pick $ct 0 10]
         :local addr [/ip/firewall/address-list/get $x address]
 
-        # Берём только адреса, созданные сегодня
+        # take addresses created today
         :if ($createdDate = $date) do={
             :local old [/file/get $f contents]
             /file/set $f contents=($old . $addr . "\r\n")
@@ -32,10 +32,10 @@
 
     :delay 500ms
 
-    # SFTP сюда
+    # sftp
     /tool/fetch address= mode=sftp user= password= src-path="$i.txt" dst-path="/mnt/data/mikrotik_exp/$i_$stamp.txt" upload=yes
 
-    # После успешной отправки:
+    # after successful submission:
     /file/remove $f
 }
 

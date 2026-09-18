@@ -43,3 +43,26 @@
 #================================
 # Для всех записей в листах
 #================================
+
+:local date [/system/clock/get date]
+:local time [/system/clock/get time]
+:local stamp ("$date $time")
+
+:local list {"dns_flood";"port_scanners";"wan_ddos_blacklist";"black_list_winbox"}
+
+
+:foreach i in=$list do={
+    /ip/firewall/address-list/print file=$i where list=$i
+
+    :local f [/file/find name=("$i.txt")]
+
+    :while ([:len $f] = 0) do={
+        :delay 100ms
+        :set f [/file/find name=("$i.txt")]
+    }
+
+    # SFTP
+    /tool/fetch address= mode=sftp user= password= src-path="$i.txt" dst-path="/mnt/data/mikrotik_exp/$i_$stamp.txt" upload=yes
+
+    /file/remove $f
+}

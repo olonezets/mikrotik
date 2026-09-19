@@ -71,9 +71,9 @@
 :local time [/system/clock/get time]
 :local stamp "$date $time"
 
-:local providers {"ukrtelekom"; "express"; "starlink"}
+:local providers {""; ""; ""}
 :local pingnames {"wan3"; "wan2"; "wan1"}
-:local pingsources {"37.53.72.248"; "192.168.3.5"; "192.168.1.215"}
+:local pingsources {""; ""; ""}
 :local pingtargets {"1.1.1.1"; "9.9.9.9"; "8.8.8.8"}
 
 :local distenebl {1; 2; 3}
